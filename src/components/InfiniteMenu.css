@@ -19,7 +19,7 @@
   height: 60px;
   display: grid;
   place-items: center;
-  background: cyan;
+  background: oklch(87.9% 0.169 91.605);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -27,7 +27,7 @@
 }
 
 .face-title {
-  color: white;
+  color: oklch(87.9% 0.169 91.605);
   user-select: none;
   position: absolute;
   font-weight: 900;
