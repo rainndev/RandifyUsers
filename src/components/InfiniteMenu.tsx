@@ -54,6 +54,7 @@ precision highp float;
 uniform sampler2D uTex;
 uniform int uItemCount;
 uniform int uAtlasSize;
+uniform int uActiveItemIndex;
 
 out vec4 outColor;
 
@@ -83,7 +84,12 @@ void main() {
     
     st = st * cellSize + cellOffset;
     
-    outColor = texture(uTex, st);
+    vec4 sampled = texture(uTex, st);
+    float luminance = dot(sampled.rgb, vec3(0.299, 0.587, 0.114));
+    vec3 grayscale = vec3(luminance);
+    float isActive = float(itemIndex == uActiveItemIndex);
+
+    outColor = vec4(mix(grayscale, sampled.rgb, isActive), sampled.a);
     outColor.a *= vAlpha;
 }
 `;
@@ -742,6 +748,7 @@ class InfiniteGridMenu {
     uFrames: WebGLUniformLocation | null;
     uItemCount: WebGLUniformLocation | null;
     uAtlasSize: WebGLUniformLocation | null;
+    uActiveItemIndex: WebGLUniformLocation | null;
   };
 
   private viewportSize = vec2.create();
@@ -761,6 +768,7 @@ class InfiniteGridMenu {
   private _deltaTime = 0;
   private _deltaFrames = 0;
   private _frames = 0;
+  private activeItemIndex = 0;
 
   private movementActive = false;
 
@@ -883,6 +891,10 @@ class InfiniteGridMenu {
       uFrames: gl.getUniformLocation(this.discProgram!, "uFrames"),
       uItemCount: gl.getUniformLocation(this.discProgram!, "uItemCount"),
       uAtlasSize: gl.getUniformLocation(this.discProgram!, "uAtlasSize"),
+      uActiveItemIndex: gl.getUniformLocation(
+        this.discProgram!,
+        "uActiveItemIndex",
+      ),
     };
 
     this.discGeo = new DiscGeometry(56, 1);
@@ -1117,6 +1129,7 @@ class InfiniteGridMenu {
 
     gl.uniform1i(this.discLocations.uItemCount, this.items.length);
     gl.uniform1i(this.discLocations.uAtlasSize, this.atlasSize);
+    gl.uniform1i(this.discLocations.uActiveItemIndex, this.activeItemIndex);
 
     gl.uniform1f(this.discLocations.uFrames, this._frames);
     gl.uniform1f(this.discLocations.uScaleFactor, this.scaleFactor);
@@ -1184,9 +1197,11 @@ class InfiniteGridMenu {
       this.onMovementChange(isMoving);
     }
 
+    const nearestVertexIndex = this.findNearestVertexIndex();
+    const itemIndex = nearestVertexIndex % Math.max(1, this.items.length);
+    this.activeItemIndex = itemIndex;
+
     if (!this.control.isPointerDown) {
-      const nearestVertexIndex = this.findNearestVertexIndex();
-      const itemIndex = nearestVertexIndex % Math.max(1, this.items.length);
       this.onActiveItemChange(itemIndex);
       const snapDirection = vec3.normalize(
         vec3.create(),

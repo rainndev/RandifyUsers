@@ -95,7 +95,7 @@ const App = () => {
       >
         {isLoading ? "Regenerating..." : "Regenerate"}
       </button>
-      <InfiniteMenu items={items} scale={10} />
+      <InfiniteMenu items={items} scale={2} />
     </div>
   );
 };
