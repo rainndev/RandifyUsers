@@ -43,9 +43,9 @@ const App = () => {
       const mappedItems = (data.results ?? [])
         .map((user, index) => {
           const image = user.picture?.large?.trim() ?? "";
-          const fullName = `${user.name?.first ?? ""} ${user.name?.last ?? ""}`
-            .trim()
-            .replace(/\s+/g, " ");
+          const firstName = user.name?.first?.trim() ?? "";
+          const lastName = user.name?.last?.trim() ?? "";
+          const fullName = [firstName, lastName].filter(Boolean).join("\n");
 
           if (!image) {
             return null;

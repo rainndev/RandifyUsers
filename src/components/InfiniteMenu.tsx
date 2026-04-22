@@ -1318,7 +1318,14 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
       {activeItem && (
         <>
           <h2 className={`face-title ${isMoving ? "inactive" : "active"}`}>
-            {activeItem.title}
+            {activeItem.title.split("\n").map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {line}
+                {index < activeItem.title.split("\n").length - 1 ? (
+                  <br />
+                ) : null}
+              </span>
+            ))}
           </h2>
 
           <p className={`face-description ${isMoving ? "inactive" : "active"}`}>
