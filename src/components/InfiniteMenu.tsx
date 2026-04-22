@@ -1361,10 +1361,6 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
             ))}
           </h2>
 
-          <p className={`face-description ${isMoving ? "inactive" : "active"}`}>
-            {activeItem.description}
-          </p>
-
           <div
             onClick={handleButtonClick}
             className={`action-button ${isMoving ? "inactive" : "active"}`}
