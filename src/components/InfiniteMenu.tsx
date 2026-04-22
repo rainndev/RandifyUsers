@@ -874,7 +874,7 @@ class InfiniteGridMenu {
   private init(onInit?: InitCallback): void {
     const gl = this.canvas.getContext("webgl2", {
       antialias: true,
-      alpha: false,
+      alpha: true,
     });
     if (!gl) {
       throw new Error("No WebGL 2 context!");
@@ -1130,7 +1130,7 @@ class InfiniteGridMenu {
     gl.enable(gl.CULL_FACE);
     gl.enable(gl.DEPTH_TEST);
 
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0.1294, 0.1294, 0.1294, 1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.uniformMatrix4fv(
@@ -1347,14 +1347,7 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
   const details = activeItem?.userDetails;
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
+    <div className="infinite-menu-shell">
       <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
 
       {activeItem && (

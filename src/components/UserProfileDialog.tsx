@@ -94,7 +94,7 @@ const UserProfileDialog = ({
       onClick={onClose}
     >
       <div
-        className="max-h-[86vh] w-[min(92vw,780px)] overflow-auto rounded-[24px] border border-white/15 bg-[linear-gradient(155deg,rgba(14,16,24,0.96),rgba(23,24,34,0.96))] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] animate-in fade-in slide-in-from-bottom-4 zoom-in-95 duration-200 max-[720px]:rounded-[18px] max-[720px]:p-4"
+        className="max-h-[86vh] w-[min(92vw,780px)] overflow-auto rounded-[24px] border border-white/15 bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] animate-in fade-in slide-in-from-bottom-4 zoom-in-95 duration-200 max-[720px]:rounded-[18px] max-[720px]:p-4"
         onClick={(event) => event.stopPropagation()}
       >
         <button
