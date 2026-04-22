@@ -29,6 +29,13 @@ export type UserDetails = {
 
 type TabKey = "overview" | "contact" | "location" | "account";
 
+const TAB_INDEX: Record<TabKey, number> = {
+  overview: 0,
+  contact: 1,
+  location: 2,
+  account: 3,
+};
+
 type UserProfileDialogProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -68,6 +75,8 @@ const UserProfileDialog = ({
     return null;
   }
 
+  const activeTabIndex = TAB_INDEX[activeTab];
+
   const formattedBirthDate = new Date(details.birthDate).toLocaleDateString();
   const formattedRegisteredDate = new Date(
     details.registeredDate,
@@ -101,7 +110,12 @@ const UserProfileDialog = ({
           </div>
         </div>
 
-        <div className="upd-tabs" role="tablist" aria-label="User detail tabs">
+        <div
+          className="upd-tabs"
+          role="tablist"
+          aria-label="User detail tabs"
+          style={{ ["--upd-tab-index" as any]: activeTabIndex }}
+        >
           <button
             type="button"
             role="tab"
@@ -109,7 +123,11 @@ const UserProfileDialog = ({
             className={`upd-tab ${activeTab === "overview" ? "active" : ""}`}
             onClick={() => setActiveTab("overview")}
           >
-            Overview
+            <span
+              className="upd-tab-icon upd-tab-icon--overview"
+              aria-hidden="true"
+            />
+            <span>Overview</span>
           </button>
           <button
             type="button"
@@ -118,7 +136,11 @@ const UserProfileDialog = ({
             className={`upd-tab ${activeTab === "contact" ? "active" : ""}`}
             onClick={() => setActiveTab("contact")}
           >
-            Contact
+            <span
+              className="upd-tab-icon upd-tab-icon--contact"
+              aria-hidden="true"
+            />
+            <span>Contact</span>
           </button>
           <button
             type="button"
@@ -127,7 +149,11 @@ const UserProfileDialog = ({
             className={`upd-tab ${activeTab === "location" ? "active" : ""}`}
             onClick={() => setActiveTab("location")}
           >
-            Location
+            <span
+              className="upd-tab-icon upd-tab-icon--location"
+              aria-hidden="true"
+            />
+            <span>Location</span>
           </button>
           <button
             type="button"
@@ -136,13 +162,17 @@ const UserProfileDialog = ({
             className={`upd-tab ${activeTab === "account" ? "active" : ""}`}
             onClick={() => setActiveTab("account")}
           >
-            Account
+            <span
+              className="upd-tab-icon upd-tab-icon--account"
+              aria-hidden="true"
+            />
+            <span>Account</span>
           </button>
         </div>
 
         <div className="upd-panel" role="tabpanel">
           {activeTab === "overview" && (
-            <div className="upd-grid">
+            <div key="overview" className="upd-grid upd-grid--animate">
               <p>
                 <strong>Gender</strong>
                 <span>{details.gender}</span>
@@ -174,7 +204,7 @@ const UserProfileDialog = ({
           )}
 
           {activeTab === "contact" && (
-            <div className="upd-grid">
+            <div key="contact" className="upd-grid upd-grid--animate">
               <p>
                 <strong>Email</strong>
                 <span>{details.email}</span>
@@ -191,7 +221,7 @@ const UserProfileDialog = ({
           )}
 
           {activeTab === "location" && (
-            <div className="upd-grid">
+            <div key="location" className="upd-grid upd-grid--animate">
               <p>
                 <strong>Street</strong>
                 <span>{details.location.street}</span>
@@ -220,7 +250,7 @@ const UserProfileDialog = ({
           )}
 
           {activeTab === "account" && (
-            <div className="upd-grid">
+            <div key="account" className="upd-grid upd-grid--animate">
               <p>
                 <strong>Username</strong>
                 <span>@{details.username}</span>

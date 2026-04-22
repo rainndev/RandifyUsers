@@ -84,6 +84,26 @@
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.05);
   margin-bottom: 14px;
+  position: relative;
+}
+
+.upd-tabs::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: calc((100% - 24px) / 4);
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(242, 208, 124, 0.22),
+    rgba(242, 208, 124, 0.1)
+  );
+  transform: translateX(calc(var(--upd-tab-index, 0) * (100% + 8px)));
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .upd-tab {
@@ -94,6 +114,12 @@
   color: rgba(255, 255, 255, 0.78);
   font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  position: relative;
+  z-index: 1;
   transition:
     background 160ms ease,
     color 160ms ease,
@@ -106,12 +132,35 @@
 }
 
 .upd-tab.active {
-  background: linear-gradient(
-    180deg,
-    rgba(242, 208, 124, 0.2),
-    rgba(242, 208, 124, 0.1)
-  );
   color: #f5d98f;
+}
+
+.upd-tab-icon {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  opacity: 0.85;
+}
+
+.upd-tab-icon--overview {
+  border-radius: 4px;
+}
+
+.upd-tab-icon--contact {
+  border-radius: 999px;
+  border-width: 2px;
+  box-shadow: inset 0 -2px 0 0 currentColor;
+}
+
+.upd-tab-icon--location {
+  border-radius: 999px 999px 999px 2px;
+  transform: rotate(-45deg);
+}
+
+.upd-tab-icon--account {
+  border-style: dashed;
 }
 
 .upd-panel {
@@ -127,6 +176,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+}
+
+.upd-grid--animate {
+  animation: upd-panel-in 220ms ease;
 }
 
 .upd-grid p {
@@ -190,6 +243,17 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes upd-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
