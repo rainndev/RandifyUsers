@@ -89,8 +89,17 @@ void main() {
     float luminance = dot(sampled.rgb, vec3(0.299, 0.587, 0.114));
     vec3 grayscale = vec3(luminance);
     float isActive = float(itemIndex == uActiveItemIndex);
+    vec3 baseColor = mix(grayscale, sampled.rgb, isActive);
 
-    outColor = vec4(mix(grayscale, sampled.rgb, isActive), sampled.a);
+    float radial = distance(vUvs, vec2(0.5));
+    float aa = max(fwidth(radial), 0.0015);
+    float borderInner = 0.455;
+    float borderOuter = 0.500;
+    float borderMask = smoothstep(borderInner - aa, borderInner + aa, radial)
+             * (1.0 - smoothstep(borderOuter - aa, borderOuter + aa, radial));
+    vec3 borderColor = mix(vec3(0.73, 0.73, 0.78), vec3(0.95, 0.82, 0.52), isActive);
+
+    outColor = vec4(mix(baseColor, borderColor, borderMask), sampled.a);
     outColor.a *= vAlpha;
 }
 `;
