@@ -125,15 +125,8 @@ const App = () => {
           const image = user.picture?.large?.trim() ?? "";
           const firstName = user.name?.first?.trim() ?? "";
           const lastName = user.name?.last?.trim() ?? "";
-          const city = user.location?.city?.trim() ?? "Unknown city";
-          const state = user.location?.state?.trim() ?? "Unknown state";
-          const country = user.location?.country?.trim() ?? "Unknown country";
-          const age = user.dob?.age ?? "unknown";
-          const nationality = user.nat?.trim() || "N/A";
-          const username = user.login?.username?.trim() || "anonymous";
           const fullName = [firstName, lastName].filter(Boolean).join("\n");
-          const description = `Hi, I'm from ${city}, ${state}, ${country}. I'm ${age} years old, my nationality is ${nationality}, and my username is @${username}.`;
-
+          const description = `Hi! Click the button below to view my profile.`;
           if (!image) {
             return null;
           }
