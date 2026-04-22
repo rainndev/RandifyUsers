@@ -1,6 +1,7 @@
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
 import { useEffect, useRef, useState } from "react";
 import "./InfiniteMenu.css";
+import UserProfileDialog from "./UserProfileDialog";
 
 const discVertShaderSource = `#version 300 es
 
@@ -1333,28 +1334,6 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
     setIsDialogOpen(true);
   };
 
-  const handleOpenProfileLink = () => {
-    if (!activeItem?.link) return;
-    if (activeItem.link.startsWith("http")) {
-      window.open(activeItem.link, "_blank");
-    } else {
-      console.log("Internal route:", activeItem.link);
-    }
-  };
-
-  useEffect(() => {
-    if (!isDialogOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsDialogOpen(false);
-      }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [isDialogOpen]);
-
   const titleLines = activeItem?.title.split("\n") ?? [];
   const details = activeItem?.userDetails;
 
@@ -1384,107 +1363,14 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
             <p className="action-button-icon">&#x2197;</p>
           </div>
 
-          {isDialogOpen && details && (
-            <div
-              className="profile-dialog-backdrop"
-              onClick={() => setIsDialogOpen(false)}
-            >
-              <div
-                className="profile-dialog"
-                onClick={(event) => event.stopPropagation()}
-              >
-                <button
-                  type="button"
-                  className="profile-dialog-close"
-                  onClick={() => setIsDialogOpen(false)}
-                  aria-label="Close profile dialog"
-                >
-                  x
-                </button>
-
-                <div className="profile-dialog-header">
-                  <img
-                    className="profile-dialog-avatar"
-                    src={activeItem.image}
-                    alt={activeItem.title.replace(/\n/g, " ")}
-                  />
-                  <div>
-                    <h3 className="profile-dialog-title">
-                      {activeItem.title.replace(/\n/g, " ")}
-                    </h3>
-                    <p className="profile-dialog-subtitle">
-                      @{details.username}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="profile-dialog-grid">
-                  <p>
-                    <strong>Gender:</strong> {details.gender}
-                  </p>
-                  <p>
-                    <strong>Age:</strong> {details.age}
-                  </p>
-                  <p>
-                    <strong>Nationality:</strong> {details.nationality}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {details.email}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {details.phone}
-                  </p>
-                  <p>
-                    <strong>Cell:</strong> {details.cell}
-                  </p>
-                  <p>
-                    <strong>Birth Date:</strong>{" "}
-                    {new Date(details.birthDate).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Registered:</strong>{" "}
-                    {new Date(details.registeredDate).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>UUID:</strong> {details.uuid}
-                  </p>
-                  <p>
-                    <strong>ID:</strong> {details.idName || "N/A"}
-                    {details.idValue ? ` - ${details.idValue}` : ""}
-                  </p>
-                  <p>
-                    <strong>Street:</strong> {details.location.street}
-                  </p>
-                  <p>
-                    <strong>City/State:</strong> {details.location.city},{" "}
-                    {details.location.state}
-                  </p>
-                  <p>
-                    <strong>Country:</strong> {details.location.country}
-                  </p>
-                  <p>
-                    <strong>Postcode:</strong> {details.location.postcode}
-                  </p>
-                  <p>
-                    <strong>Coordinates:</strong> {details.location.latitude},{" "}
-                    {details.location.longitude}
-                  </p>
-                  <p>
-                    <strong>Timezone:</strong> {details.location.timezoneOffset}{" "}
-                    ({details.location.timezoneDescription})
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  className="profile-dialog-link"
-                  onClick={handleOpenProfileLink}
-                >
-                  Open Source Profile
-                </button>
-              </div>
-            </div>
-          )}
+          <UserProfileDialog
+            isOpen={isDialogOpen && Boolean(details)}
+            onClose={() => setIsDialogOpen(false)}
+            fullName={activeItem.title.replace(/\n/g, " ")}
+            imageUrl={activeItem.image}
+            sourceLink={activeItem.link}
+            details={details}
+          />
         </>
       )}
     </div>
