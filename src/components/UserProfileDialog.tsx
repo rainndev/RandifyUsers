@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export type UserDetails = {
@@ -99,11 +100,11 @@ const UserProfileDialog = ({
       >
         <button
           type="button"
-          className="float-right h-8.5 w-8.5 cursor-pointer rounded-full  text-2xl text-white"
+          className="float-right inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-white"
           onClick={onClose}
           aria-label="Close profile dialog"
         >
-          x
+          <X size={20} strokeWidth={2.4} />
         </button>
 
         <div className="mb-4 clear-both flex items-center gap-3.5">
