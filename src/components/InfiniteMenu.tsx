@@ -708,6 +708,11 @@ interface Camera {
 }
 
 class InfiniteGridMenu {
+  private canvas: HTMLCanvasElement;
+  private items: MenuItem[];
+  private onActiveItemChange: ActiveItemCallback;
+  private onMovementChange: MovementChangeCallback;
+
   private gl: WebGL2RenderingContext | null = null;
   private discProgram: WebGLProgram | null = null;
   private discVAO: WebGLVertexArrayObject | null = null;
@@ -781,13 +786,17 @@ class InfiniteGridMenu {
   public scaleFactor = 1.0;
 
   constructor(
-    private canvas: HTMLCanvasElement,
-    private items: MenuItem[],
-    private onActiveItemChange: ActiveItemCallback,
-    private onMovementChange: MovementChangeCallback,
+    canvas: HTMLCanvasElement,
+    items: MenuItem[],
+    onActiveItemChange: ActiveItemCallback,
+    onMovementChange: MovementChangeCallback,
     onInit?: InitCallback,
     scale: number = 1.0,
   ) {
+    this.canvas = canvas;
+    this.items = items;
+    this.onActiveItemChange = onActiveItemChange;
+    this.onMovementChange = onMovementChange;
     this.scaleFactor = scale;
     this.camera.position[2] = 3 * scale;
     this.init(onInit);
@@ -1238,10 +1247,8 @@ interface InfiniteMenuProps {
   scale?: number;
 }
 
-const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(
-    null,
-  ) as MutableRefObject<HTMLCanvasElement | null>;
+const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [activeItem, setActiveItem] = useState<MenuItem | null>(null);
   const [isMoving, setIsMoving] = useState<boolean>(false);
 
