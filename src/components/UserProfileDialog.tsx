@@ -125,7 +125,7 @@ const UserProfileDialog = ({
         </div>
 
         <div
-          className="relative mb-3.5 grid grid-cols-4 gap-2 rounded-[14px] bg-white/5 p-1.5 max-[720px]:grid-cols-2"
+          className="relative mb-3.5 grid grid-cols-4 gap-2 overflow-hidden rounded-[14px] bg-white/5 p-1.5 max-[720px]:grid-cols-2"
           role="tablist"
           aria-label="User detail tabs"
           style={
@@ -146,7 +146,7 @@ const UserProfileDialog = ({
             type="button"
             role="tab"
             aria-selected={activeTab === "overview"}
-            className={`relative z-1 inline-flex items-center justify-center gap-1.75 rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 ${
+            className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "overview"
                 ? "text-[#f5d98f]"
                 : "text-white/80 hover:-translate-y-px hover:text-white"
@@ -163,7 +163,7 @@ const UserProfileDialog = ({
             type="button"
             role="tab"
             aria-selected={activeTab === "contact"}
-            className={`relative z-1 inline-flex items-center justify-center gap-1.75 rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 ${
+            className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "contact"
                 ? "text-[#f5d98f]"
                 : "text-white/80 hover:-translate-y-px hover:text-white"
@@ -180,7 +180,7 @@ const UserProfileDialog = ({
             type="button"
             role="tab"
             aria-selected={activeTab === "location"}
-            className={`relative z-1 inline-flex items-center justify-center gap-1.75 rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 ${
+            className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "location"
                 ? "text-[#f5d98f]"
                 : "text-white/80 hover:-translate-y-px hover:text-white"
@@ -197,7 +197,7 @@ const UserProfileDialog = ({
             type="button"
             role="tab"
             aria-selected={activeTab === "account"}
-            className={`relative z-1 inline-flex items-center justify-center gap-1.75 rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 ${
+            className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "account"
                 ? "text-[#f5d98f]"
                 : "text-white/80 hover:-translate-y-px hover:text-white"
