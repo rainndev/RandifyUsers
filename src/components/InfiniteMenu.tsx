@@ -692,6 +692,31 @@ interface MenuItem {
   link: string;
   title: string;
   description: string;
+  userDetails?: {
+    gender: string;
+    email: string;
+    phone: string;
+    cell: string;
+    nationality: string;
+    age: number;
+    birthDate: string;
+    registeredDate: string;
+    username: string;
+    uuid: string;
+    idName: string;
+    idValue: string | null;
+    location: {
+      street: string;
+      city: string;
+      state: string;
+      country: string;
+      postcode: number | string;
+      latitude: string;
+      longitude: string;
+      timezoneOffset: string;
+      timezoneDescription: string;
+    };
+  };
 }
 
 type ActiveItemCallback = (index: number) => void;
@@ -1266,6 +1291,7 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [activeItem, setActiveItem] = useState<MenuItem | null>(null);
   const [isMoving, setIsMoving] = useState<boolean>(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -1303,6 +1329,11 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
   }, [items, scale]);
 
   const handleButtonClick = () => {
+    if (!activeItem) return;
+    setIsDialogOpen(true);
+  };
+
+  const handleOpenProfileLink = () => {
     if (!activeItem?.link) return;
     if (activeItem.link.startsWith("http")) {
       window.open(activeItem.link, "_blank");
@@ -1311,6 +1342,22 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
     }
   };
 
+  useEffect(() => {
+    if (!isDialogOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsDialogOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isDialogOpen]);
+
+  const titleLines = activeItem?.title.split("\n") ?? [];
+  const details = activeItem?.userDetails;
+
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
@@ -1318,12 +1365,10 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
       {activeItem && (
         <>
           <h2 className={`face-title ${isMoving ? "inactive" : "active"}`}>
-            {activeItem.title.split("\n").map((line, index) => (
+            {titleLines.map((line, index) => (
               <span key={`${line}-${index}`}>
                 {line}
-                {index < activeItem.title.split("\n").length - 1 ? (
-                  <br />
-                ) : null}
+                {index < titleLines.length - 1 ? <br /> : null}
               </span>
             ))}
           </h2>
@@ -1338,6 +1383,108 @@ const InfiniteMenu = ({ items = [], scale = 1.0 }: InfiniteMenuProps) => {
           >
             <p className="action-button-icon">&#x2197;</p>
           </div>
+
+          {isDialogOpen && details && (
+            <div
+              className="profile-dialog-backdrop"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              <div
+                className="profile-dialog"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  className="profile-dialog-close"
+                  onClick={() => setIsDialogOpen(false)}
+                  aria-label="Close profile dialog"
+                >
+                  x
+                </button>
+
+                <div className="profile-dialog-header">
+                  <img
+                    className="profile-dialog-avatar"
+                    src={activeItem.image}
+                    alt={activeItem.title.replace(/\n/g, " ")}
+                  />
+                  <div>
+                    <h3 className="profile-dialog-title">
+                      {activeItem.title.replace(/\n/g, " ")}
+                    </h3>
+                    <p className="profile-dialog-subtitle">
+                      @{details.username}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="profile-dialog-grid">
+                  <p>
+                    <strong>Gender:</strong> {details.gender}
+                  </p>
+                  <p>
+                    <strong>Age:</strong> {details.age}
+                  </p>
+                  <p>
+                    <strong>Nationality:</strong> {details.nationality}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {details.email}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {details.phone}
+                  </p>
+                  <p>
+                    <strong>Cell:</strong> {details.cell}
+                  </p>
+                  <p>
+                    <strong>Birth Date:</strong>{" "}
+                    {new Date(details.birthDate).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Registered:</strong>{" "}
+                    {new Date(details.registeredDate).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>UUID:</strong> {details.uuid}
+                  </p>
+                  <p>
+                    <strong>ID:</strong> {details.idName || "N/A"}
+                    {details.idValue ? ` - ${details.idValue}` : ""}
+                  </p>
+                  <p>
+                    <strong>Street:</strong> {details.location.street}
+                  </p>
+                  <p>
+                    <strong>City/State:</strong> {details.location.city},{" "}
+                    {details.location.state}
+                  </p>
+                  <p>
+                    <strong>Country:</strong> {details.location.country}
+                  </p>
+                  <p>
+                    <strong>Postcode:</strong> {details.location.postcode}
+                  </p>
+                  <p>
+                    <strong>Coordinates:</strong> {details.location.latitude},{" "}
+                    {details.location.longitude}
+                  </p>
+                  <p>
+                    <strong>Timezone:</strong> {details.location.timezoneOffset}{" "}
+                    ({details.location.timezoneDescription})
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  className="profile-dialog-link"
+                  onClick={handleOpenProfileLink}
+                >
+                  Open Source Profile
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

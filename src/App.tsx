@@ -6,6 +6,31 @@ type MenuItem = {
   link: string;
   title: string;
   description: string;
+  userDetails: {
+    gender: string;
+    email: string;
+    phone: string;
+    cell: string;
+    nationality: string;
+    age: number;
+    birthDate: string;
+    registeredDate: string;
+    username: string;
+    uuid: string;
+    idName: string;
+    idValue: string | null;
+    location: {
+      street: string;
+      city: string;
+      state: string;
+      country: string;
+      postcode: number | string;
+      latitude: string;
+      longitude: string;
+      timezoneOffset: string;
+      timezoneDescription: string;
+    };
+  };
 };
 
 type RandomUser = {
@@ -118,6 +143,31 @@ const App = () => {
             link: "https://randomuser.me/",
             title: fullName || `User ${index + 1}`,
             description,
+            userDetails: {
+              gender: user.gender,
+              email: user.email,
+              phone: user.phone,
+              cell: user.cell,
+              nationality: user.nat,
+              age: user.dob.age,
+              birthDate: user.dob.date,
+              registeredDate: user.registered.date,
+              username: user.login.username,
+              uuid: user.login.uuid,
+              idName: user.id.name,
+              idValue: user.id.value,
+              location: {
+                street: `${user.location.street.number} ${user.location.street.name}`,
+                city: user.location.city,
+                state: user.location.state,
+                country: user.location.country,
+                postcode: user.location.postcode,
+                latitude: user.location.coordinates.latitude,
+                longitude: user.location.coordinates.longitude,
+                timezoneOffset: user.location.timezone.offset,
+                timezoneDescription: user.location.timezone.description,
+              },
+            },
           };
         })
         .filter((item): item is MenuItem => Boolean(item));
