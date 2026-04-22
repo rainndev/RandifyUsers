@@ -220,7 +220,7 @@ const UserProfileDialog = ({
               key="overview"
               className="grid grid-cols-2 gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 max-[720px]:grid-cols-1"
             >
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Gender
                 </strong>
@@ -228,7 +228,7 @@ const UserProfileDialog = ({
                   {details.gender}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Age
                 </strong>
@@ -236,7 +236,7 @@ const UserProfileDialog = ({
                   {details.age}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Nationality
                 </strong>
@@ -244,7 +244,7 @@ const UserProfileDialog = ({
                   {details.nationality}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Birth Date
                 </strong>
@@ -252,7 +252,7 @@ const UserProfileDialog = ({
                   {formattedBirthDate}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Registered
                 </strong>
@@ -260,7 +260,7 @@ const UserProfileDialog = ({
                   {formattedRegisteredDate}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Timezone
                 </strong>
@@ -277,7 +277,7 @@ const UserProfileDialog = ({
               key="contact"
               className="grid grid-cols-2 gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 max-[720px]:grid-cols-1"
             >
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Email
                 </strong>
@@ -285,7 +285,7 @@ const UserProfileDialog = ({
                   {details.email}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Phone
                 </strong>
@@ -293,7 +293,7 @@ const UserProfileDialog = ({
                   {details.phone}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Cell
                 </strong>
@@ -309,7 +309,7 @@ const UserProfileDialog = ({
               key="location"
               className="grid grid-cols-2 gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 max-[720px]:grid-cols-1"
             >
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Street
                 </strong>
@@ -317,7 +317,7 @@ const UserProfileDialog = ({
                   {details.location.street}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   City / State
                 </strong>
@@ -325,7 +325,7 @@ const UserProfileDialog = ({
                   {details.location.city}, {details.location.state}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Country
                 </strong>
@@ -333,7 +333,7 @@ const UserProfileDialog = ({
                   {details.location.country}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Postcode
                 </strong>
@@ -341,7 +341,7 @@ const UserProfileDialog = ({
                   {details.location.postcode}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Coordinates
                 </strong>
@@ -357,7 +357,7 @@ const UserProfileDialog = ({
               key="account"
               className="grid grid-cols-2 gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 max-[720px]:grid-cols-1"
             >
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   Username
                 </strong>
@@ -365,7 +365,7 @@ const UserProfileDialog = ({
                   @{details.username}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   UUID
                 </strong>
@@ -373,7 +373,7 @@ const UserProfileDialog = ({
                   {details.uuid}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   ID Name
                 </strong>
@@ -381,7 +381,7 @@ const UserProfileDialog = ({
                   {details.idName || "N/A"}
                 </span>
               </p>
-              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl border border-white/10 bg-white/4 px-3 py-2.5">
+              <p className="m-0 flex min-h-16 flex-col gap-1 rounded-xl  px-3 py-2.5">
                 <strong className="text-[0.74rem] uppercase tracking-wider text-white/65">
                   ID Value
                 </strong>
