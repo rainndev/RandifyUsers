@@ -99,7 +99,7 @@ const UserProfileDialog = ({
       >
         <button
           type="button"
-          className="float-right h-8.5 w-8.5 cursor-pointer rounded-full border border-white/20 bg-white/10 text-white"
+          className="float-right h-8.5 w-8.5 cursor-pointer rounded-full  text-2xl text-white"
           onClick={onClose}
           aria-label="Close profile dialog"
         >
