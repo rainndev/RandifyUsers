@@ -8,16 +8,73 @@ type MenuItem = {
   description: string;
 };
 
+type RandomUser = {
+  gender: string;
+  name: {
+    title: string;
+    first: string;
+    last: string;
+  };
+  location: {
+    street: {
+      number: number;
+      name: string;
+    };
+    city: string;
+    state: string;
+    country: string;
+    postcode: number | string;
+    coordinates: {
+      latitude: string;
+      longitude: string;
+    };
+    timezone: {
+      offset: string;
+      description: string;
+    };
+  };
+  email: string;
+  login: {
+    uuid: string;
+    username: string;
+    password: string;
+    salt: string;
+    md5: string;
+    sha1: string;
+    sha256: string;
+  };
+  dob: {
+    date: string;
+    age: number;
+  };
+  registered: {
+    date: string;
+    age: number;
+  };
+  phone: string;
+  cell: string;
+  id: {
+    name: string;
+    value: string | null;
+  };
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
+  nat: string;
+};
+
+type RandomUserInfo = {
+  seed: string;
+  results: number;
+  page: number;
+  version: string;
+};
+
 type RandomUserResponse = {
-  results?: Array<{
-    name?: {
-      first?: string;
-      last?: string;
-    };
-    picture?: {
-      large?: string;
-    };
-  }>;
+  results: RandomUser[];
+  info: RandomUserInfo;
 };
 
 const toCorsSafeImageUrl = (rawUrl: string) => {
@@ -32,9 +89,7 @@ const App = () => {
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        "https://randomuser.me/api/?results=10&inc=name,picture&noinfo",
-      );
+      const response = await fetch("https://randomuser.me/api/?results=10");
       if (!response.ok) {
         throw new Error(`Request failed: ${response.status}`);
       }
@@ -45,7 +100,14 @@ const App = () => {
           const image = user.picture?.large?.trim() ?? "";
           const firstName = user.name?.first?.trim() ?? "";
           const lastName = user.name?.last?.trim() ?? "";
+          const city = user.location?.city?.trim() ?? "Unknown city";
+          const state = user.location?.state?.trim() ?? "Unknown state";
+          const country = user.location?.country?.trim() ?? "Unknown country";
+          const age = user.dob?.age ?? "unknown";
+          const nationality = user.nat?.trim() || "N/A";
+          const username = user.login?.username?.trim() || "anonymous";
           const fullName = [firstName, lastName].filter(Boolean).join("\n");
+          const description = `Hi, I'm from ${city}, ${state}, ${country}. I'm ${age} years old, my nationality is ${nationality}, and my username is @${username}.`;
 
           if (!image) {
             return null;
@@ -55,7 +117,7 @@ const App = () => {
             image: toCorsSafeImageUrl(image),
             link: "https://randomuser.me/",
             title: fullName || `User ${index + 1}`,
-            description: "Random User API profile",
+            description,
           };
         })
         .filter((item): item is MenuItem => Boolean(item));
@@ -95,7 +157,7 @@ const App = () => {
       >
         {isLoading ? "Regenerating..." : "Regenerate"}
       </button>
-      <InfiniteMenu items={items} scale={2} />
+      <InfiniteMenu items={items} scale={1} />
     </div>
   );
 };
