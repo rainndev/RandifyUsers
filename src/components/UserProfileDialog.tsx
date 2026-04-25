@@ -95,7 +95,7 @@ const UserProfileDialog = ({
       onClick={onClose}
     >
       <div
-        className="max-h-[86vh] w-[min(92vw,780px)] overflow-auto rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] animate-in fade-in slide-in-from-bottom-4 zoom-in-95 duration-200  max-[720px]:p-4"
+        className="max-h-[86vh] w-[min(92vw,900px)] overflow-auto rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] animate-in fade-in slide-in-from-bottom-4 zoom-in-95 duration-200  max-[720px]:p-4"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -149,7 +149,7 @@ const UserProfileDialog = ({
             className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "overview"
                 ? "text-[#f5d98f]"
-                : "text-white/80 hover:-translate-y-px hover:text-white"
+                : "text-white/50 hover:-translate-y-px hover:text-white"
             }`}
             onClick={() => setActiveTab("overview")}
           >
@@ -166,7 +166,7 @@ const UserProfileDialog = ({
             className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "contact"
                 ? "text-[#f5d98f]"
-                : "text-white/80 hover:-translate-y-px hover:text-white"
+                : "text-white/50 hover:-translate-y-px hover:text-white"
             }`}
             onClick={() => setActiveTab("contact")}
           >
@@ -183,7 +183,7 @@ const UserProfileDialog = ({
             className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "location"
                 ? "text-[#f5d98f]"
-                : "text-white/80 hover:-translate-y-px hover:text-white"
+                : "text-white/50 hover:-translate-y-px hover:text-white"
             }`}
             onClick={() => setActiveTab("location")}
           >
@@ -200,7 +200,7 @@ const UserProfileDialog = ({
             className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
               activeTab === "account"
                 ? "text-[#f5d98f]"
-                : "text-white/80 hover:-translate-y-px hover:text-white"
+                : "text-white/50 hover:-translate-y-px hover:text-white"
             }`}
             onClick={() => setActiveTab("account")}
           >
