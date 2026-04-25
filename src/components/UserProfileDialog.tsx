@@ -132,7 +132,7 @@ const UserProfileDialog = ({
               <span
                 className="pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 rounded-[10px] bg-linear-to-b from-[rgba(242,208,124,0.22)] to-[rgba(242,208,124,0.1)] transition-transform duration-260 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
-                  width: "calc((100% - 24px) / 4)",
+                  width: "calc((100% - 35px) / 4)",
                   transform: `translateX(calc(${activeTabIndex} * (100% + 8px)))`,
                 }}
               />
