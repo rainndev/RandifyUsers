@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import InfiniteMenu from "./components/InfiniteMenu";
+import Loading from "./components/Loading";
 
 type MenuItem = {
   image: string;
@@ -179,27 +180,33 @@ const App = () => {
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <button
-        type="button"
-        onClick={() => void fetchUsers()}
-        disabled={isLoading}
-        style={{
-          position: "absolute",
-          top: "16px",
-          right: "16px",
-          zIndex: 20,
-          padding: "10px 14px",
-          borderRadius: "10px",
-          border: "1px solid rgba(255,255,255,0.35)",
-          background: "rgba(0,0,0,0.45)",
-          color: "#fff",
-          fontWeight: 600,
-          cursor: isLoading ? "not-allowed" : "pointer",
-        }}
-      >
-        {isLoading ? "Regenerating..." : "Regenerate"}
-      </button>
-      <InfiniteMenu items={items} scale={1} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <button
+            type="button"
+            onClick={() => void fetchUsers()}
+            disabled={isLoading}
+            style={{
+              position: "absolute",
+              top: "16px",
+              right: "16px",
+              zIndex: 20,
+              padding: "10px 14px",
+              borderRadius: "10px",
+              border: "1px solid rgba(255,255,255,0.35)",
+              background: "rgba(0,0,0,0.45)",
+              color: "#fff",
+              fontWeight: 600,
+              cursor: isLoading ? "not-allowed" : "pointer",
+            }}
+          >
+            Load New Users
+          </button>
+          <InfiniteMenu items={items} scale={1} />
+        </>
+      )}
     </div>
   );
 };
