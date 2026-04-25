@@ -8,7 +8,6 @@ const Loading = () => {
         size="medium"
         textColor=""
       />
-      <p className="text-lg text-amber-300 font-medium">Loading... </p>
     </div>
   );
 };

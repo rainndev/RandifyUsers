@@ -1,5 +1,6 @@
 import type { TabKey, UserDetails } from "@/types/User.types";
 import { X } from "lucide-react";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 const TAB_INDEX: Record<TabKey, number> = {
@@ -67,7 +68,8 @@ const UserProfileDialog = ({
       className="absolute inset-0 z-30 grid place-items-center bg-[radial-gradient(circle_at_50%_10%,rgba(31,34,46,0.35),rgba(4,5,9,0.75))] backdrop-blur-[10px] animate-in fade-in duration-200 border-[#1a1a1a] border-[5px]"
       onClick={onClose}
     >
-      <div
+      <motion.div
+        layout
         className="max-h-[86vh] w-[min(92vw,900px)] overflow-auto rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] animate-in fade-in slide-in-from-bottom-4 zoom-in-95 duration-200  max-[720px]:p-4"
         onClick={(event) => event.stopPropagation()}
       >
@@ -374,7 +376,7 @@ const UserProfileDialog = ({
         >
           Open Source Profile
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };
