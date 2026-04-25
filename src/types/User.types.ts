@@ -98,3 +98,31 @@ export type RandomUserResponse = {
   results: RandomUser[];
   info: RandomUserInfo;
 };
+
+export type UserDetails = {
+  gender: string;
+  email: string;
+  phone: string;
+  cell: string;
+  nationality: string;
+  age: number;
+  birthDate: string;
+  registeredDate: string;
+  username: string;
+  uuid: string;
+  idName: string;
+  idValue: string | null;
+  location: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    postcode: number | string;
+    latitude: string;
+    longitude: string;
+    timezoneOffset: string;
+    timezoneDescription: string;
+  };
+};
+
+export type TabKey = "overview" | "contact" | "location" | "account";

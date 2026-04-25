@@ -1,33 +1,6 @@
+import type { TabKey, UserDetails } from "@/types/User.types";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
-
-export type UserDetails = {
-  gender: string;
-  email: string;
-  phone: string;
-  cell: string;
-  nationality: string;
-  age: number;
-  birthDate: string;
-  registeredDate: string;
-  username: string;
-  uuid: string;
-  idName: string;
-  idValue: string | null;
-  location: {
-    street: string;
-    city: string;
-    state: string;
-    country: string;
-    postcode: number | string;
-    latitude: string;
-    longitude: string;
-    timezoneOffset: string;
-    timezoneDescription: string;
-  };
-};
-
-type TabKey = "overview" | "contact" | "location" | "account";
 
 const TAB_INDEX: Record<TabKey, number> = {
   overview: 0,
