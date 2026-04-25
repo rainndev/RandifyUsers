@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import ErrorUI from "./components/Error";
 import InfiniteMenu from "./components/InfiniteMenu";
 import Loading from "./components/Loading";
 
@@ -111,9 +112,11 @@ const toCorsSafeImageUrl = (rawUrl: string) => {
 const App = () => {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const response = await fetch("https://randomuser.me/api/?results=10");
       if (!response.ok) {
@@ -168,6 +171,7 @@ const App = () => {
       setItems(mappedItems);
     } catch (error) {
       console.error("Failed to fetch random users:", error);
+      setError(error instanceof Error ? error.message : String(error));
       setItems([]);
     } finally {
       setIsLoading(false);
@@ -182,6 +186,8 @@ const App = () => {
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
       {isLoading ? (
         <Loading />
+      ) : error ? (
+        <ErrorUI message={error} />
       ) : (
         <>
           <button
@@ -202,7 +208,7 @@ const App = () => {
               cursor: isLoading ? "not-allowed" : "pointer",
             }}
           >
-            Load New Users
+            Refresh
           </button>
           <InfiniteMenu items={items} scale={1} />
         </>
