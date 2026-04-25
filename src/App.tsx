@@ -126,7 +126,7 @@ const App = () => {
           const firstName = user.name?.first?.trim() ?? "";
           const lastName = user.name?.last?.trim() ?? "";
           const fullName = [firstName, lastName].filter(Boolean).join("\n");
-          const description = `Hi! Click the button below to view my profile.`;
+
           if (!image) {
             return null;
           }
@@ -135,7 +135,6 @@ const App = () => {
             image: toCorsSafeImageUrl(image),
             link: "https://randomuser.me/",
             title: fullName || `User ${index + 1}`,
-            description,
             userDetails: {
               gender: user.gender,
               email: user.email,
