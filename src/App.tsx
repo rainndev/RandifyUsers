@@ -6,16 +6,24 @@ import Loading from "./components/Loading";
 import type { MenuItem, RandomUserResponse } from "./types/User.types";
 import { toCorsSafeImageUrl } from "./utils/Cors";
 
+type GenderFilter = "all" | "male" | "female";
+
 const App = () => {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedGender, setSelectedGender] = useState<GenderFilter>("all");
 
-  const fetchUsers = useCallback(async () => {
+  const fetchUsers = useCallback(async (gender: GenderFilter = "all") => {
     setIsLoading(true);
     setError(null);
+    setSelectedGender(gender);
     try {
-      const response = await fetch("https://randomuser.me/api/?results=10");
+      let url = "https://randomuser.me/api/?results=10";
+      if (gender !== "all") {
+        url += `&gender=${gender}`;
+      }
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Request failed: ${response.status}`);
       }
@@ -87,15 +95,55 @@ const App = () => {
         <ErrorUI message={error} />
       ) : (
         <>
-          <button
-            type="button"
-            onClick={() => void fetchUsers()}
-            disabled={isLoading}
-            className="absolute top-4 right-4 z-20 px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300  font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2  text-[#212121]"
-          >
-            <RefreshCcw width={16} />
-            <p>Regenerate</p>
-          </button>
+          <div className="absolute top-4 right-4 z-20 flex gap-3 items-center">
+            <div className="flex gap-2 rounded-xl border-[5px] border-[#1a1a1a] bg-[rgba(0,0,0,0.45)] p-1.5 backdrop-blur-sm">
+              <button
+                type="button"
+                onClick={() => void fetchUsers("all")}
+                disabled={isLoading}
+                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                  selectedGender === "all"
+                    ? "bg-amber-300 text-[#212121]"
+                    : "bg-transparent text-white/70 hover:text-white"
+                }`}
+              >
+                All
+              </button>
+              <button
+                type="button"
+                onClick={() => void fetchUsers("male")}
+                disabled={isLoading}
+                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                  selectedGender === "male"
+                    ? "bg-amber-300 text-[#212121]"
+                    : "bg-transparent text-white/70 hover:text-white"
+                }`}
+              >
+                Male
+              </button>
+              <button
+                type="button"
+                onClick={() => void fetchUsers("female")}
+                disabled={isLoading}
+                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                  selectedGender === "female"
+                    ? "bg-amber-300 text-[#212121]"
+                    : "bg-transparent text-white/70 hover:text-white"
+                }`}
+              >
+                Female
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={() => void fetchUsers(selectedGender)}
+              disabled={isLoading}
+              className="px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300 font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2 text-[#212121]"
+            >
+              <RefreshCcw width={16} />
+              <p>Regenerate</p>
+            </button>
+          </div>
           <InfiniteMenu items={items} scale={1} />
         </>
       )}
