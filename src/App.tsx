@@ -4,11 +4,7 @@ import ErrorUI from "./components/Error";
 import InfiniteMenu from "./components/InfiniteMenu";
 import Loading from "./components/Loading";
 import type { MenuItem, RandomUserResponse } from "./types/User.types";
-
-const toCorsSafeImageUrl = (rawUrl: string) => {
-  const withoutProtocol = rawUrl.replace(/^https?:\/\//, "");
-  return `https://images.weserv.nl/?url=${encodeURIComponent(withoutProtocol)}&w=768&h=768&fit=cover`;
-};
+import { toCorsSafeImageUrl } from "./utils/Cors";
 
 const App = () => {
   const [items, setItems] = useState<MenuItem[]>([]);
