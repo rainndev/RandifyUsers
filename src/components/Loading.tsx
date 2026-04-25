@@ -5,10 +5,10 @@ const Loading = () => {
       <ThreeDot
         variant="bounce"
         color="oklch(87.9% 0.169 91.605)"
-        size="large"
-        text="Loading..."
+        size="medium"
         textColor=""
       />
+      <p className="text-lg text-amber-300 font-medium">Loading... </p>
     </div>
   );
 };
