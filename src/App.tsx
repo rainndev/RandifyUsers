@@ -95,54 +95,55 @@ const App = () => {
         <ErrorUI message={error} />
       ) : (
         <>
-          <div className="absolute top-4 right-4 z-20 flex gap-3 items-center">
-            <div className="flex gap-2 rounded-xl border-[5px] border-[#1a1a1a] bg-[rgba(0,0,0,0.45)] p-1.5 backdrop-blur-sm">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex gap-3 items-center">
+            <div className="flex gap-2 justify-center items-center">
+              <div className="flex gap-2 rounded-xl border-[5px] border-[#1a1a1a] bg-[rgba(0,0,0,0.45)] p-1.5 backdrop-blur-sm">
+                <button
+                  type="button"
+                  onClick={() => void fetchUsers("all")}
+                  disabled={isLoading}
+                  className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                    selectedGender === "all"
+                      ? "bg-amber-300 text-[#212121]"
+                      : "bg-transparent text-white/70 hover:text-white"
+                  }`}
+                >
+                  All
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void fetchUsers("male")}
+                  disabled={isLoading}
+                  className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                    selectedGender === "male"
+                      ? "bg-amber-300 text-[#212121]"
+                      : "bg-transparent text-white/70 hover:text-white"
+                  }`}
+                >
+                  Male
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void fetchUsers("female")}
+                  disabled={isLoading}
+                  className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
+                    selectedGender === "female"
+                      ? "bg-amber-300 text-[#212121]"
+                      : "bg-transparent text-white/70 hover:text-white"
+                  }`}
+                >
+                  Female
+                </button>
+              </div>
               <button
                 type="button"
-                onClick={() => void fetchUsers("all")}
+                onClick={() => void fetchUsers(selectedGender)}
                 disabled={isLoading}
-                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
-                  selectedGender === "all"
-                    ? "bg-amber-300 text-[#212121]"
-                    : "bg-transparent text-white/70 hover:text-white"
-                }`}
+                className="px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300 font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2 text-[#212121]"
               >
-                All
-              </button>
-              <button
-                type="button"
-                onClick={() => void fetchUsers("male")}
-                disabled={isLoading}
-                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
-                  selectedGender === "male"
-                    ? "bg-amber-300 text-[#212121]"
-                    : "bg-transparent text-white/70 hover:text-white"
-                }`}
-              >
-                Male
-              </button>
-              <button
-                type="button"
-                onClick={() => void fetchUsers("female")}
-                disabled={isLoading}
-                className={`px-4 py-1.5 rounded-lg font-semibold text-sm transition-all disabled:cursor-not-allowed ${
-                  selectedGender === "female"
-                    ? "bg-amber-300 text-[#212121]"
-                    : "bg-transparent text-white/70 hover:text-white"
-                }`}
-              >
-                Female
+                <RefreshCcw width={16} />
               </button>
             </div>
-            <button
-              type="button"
-              onClick={() => void fetchUsers(selectedGender)}
-              disabled={isLoading}
-              className="px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300 font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2 text-[#212121]"
-            >
-              <RefreshCcw width={16} />
-              <p>Refresh</p>
-            </button>
           </div>
           <InfiniteMenu items={items} scale={1} />
         </>
