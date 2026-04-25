@@ -141,7 +141,7 @@ const App = () => {
               className="px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300 font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2 text-[#212121]"
             >
               <RefreshCcw width={16} />
-              <p>Regenerate</p>
+              <p>Refresh</p>
             </button>
           </div>
           <InfiniteMenu items={items} scale={1} />
