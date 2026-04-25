@@ -1,3 +1,4 @@
+import { RefreshCcw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import ErrorUI from "./components/Error";
 import InfiniteMenu from "./components/InfiniteMenu";
@@ -194,21 +195,10 @@ const App = () => {
             type="button"
             onClick={() => void fetchUsers()}
             disabled={isLoading}
-            style={{
-              position: "absolute",
-              top: "16px",
-              right: "16px",
-              zIndex: 20,
-              padding: "10px 14px",
-              borderRadius: "10px",
-              border: "1px solid rgba(255,255,255,0.35)",
-              background: "rgba(0,0,0,0.45)",
-              color: "#fff",
-              fontWeight: 600,
-              cursor: isLoading ? "not-allowed" : "pointer",
-            }}
+            className="absolute top-4 right-4 z-20 px-5 py-2 rounded-xl border-[5px] border-[#1a1a1a] bg-amber-300  font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex gap-2  text-[#212121]"
           >
-            Refresh
+            <RefreshCcw width={16} />
+            <p>Regenerate</p>
           </button>
           <InfiniteMenu items={items} scale={1} />
         </>
