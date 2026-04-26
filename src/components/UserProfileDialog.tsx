@@ -1,4 +1,4 @@
-import { CULTURE_SNAPSHOT_BY_NAT } from "@/lib/culture-snap";
+import { CULTURE_SNAPSHOT_BY_NAT } from "@/data/culture-snap";
 import type { CultureSnapshot } from "@/types/culture-snap.types";
 import type { TabKey, UserDetails } from "@/types/User.types";
 import { Eclipse, Leaf, Omega, StickyNote, X } from "lucide-react";
