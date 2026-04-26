@@ -151,7 +151,7 @@ const UserProfileDialog = ({
               }
             >
               <span
-                className="pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 rounded-[10px] bg-linear-to-b from-[rgba(242,208,124,0.22)] to-[rgba(242,208,124,0.1)] transition-transform duration-260 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 rounded-[10px] bg-amber-300 transition-transform duration-260 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
                   width: "calc((100% - 35px) / 4)",
                   transform: `translateX(calc(${activeTabIndex} * (100% + 8px)))`,
@@ -164,7 +164,7 @@ const UserProfileDialog = ({
                 aria-selected={activeTab === "overview"}
                 className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
                   activeTab === "overview"
-                    ? "text-[#f5d98f]"
+                    ? "text-[#212121]"
                     : "text-white/50 hover:-translate-y-px hover:text-white"
                 }`}
                 onClick={() => setActiveTab("overview")}
@@ -181,7 +181,7 @@ const UserProfileDialog = ({
                 aria-selected={activeTab === "contact"}
                 className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
                   activeTab === "contact"
-                    ? "text-[#f5d98f]"
+                    ? "text-[#212121]"
                     : "text-white/50 hover:-translate-y-px hover:text-white"
                 }`}
                 onClick={() => setActiveTab("contact")}
@@ -198,7 +198,7 @@ const UserProfileDialog = ({
                 aria-selected={activeTab === "location"}
                 className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
                   activeTab === "location"
-                    ? "text-[#f5d98f]"
+                    ? "text-[#212121]"
                     : "text-white/50 hover:-translate-y-px hover:text-white"
                 }`}
                 onClick={() => setActiveTab("location")}
@@ -215,7 +215,7 @@ const UserProfileDialog = ({
                 aria-selected={activeTab === "account"}
                 className={`relative z-1 inline-flex min-w-0 items-center justify-center gap-1.75 whitespace-nowrap rounded-[10px] border-0 bg-transparent px-2 py-2.5 font-semibold transition-all duration-150 focus:outline-none focus-visible:outline-none ${
                   activeTab === "account"
-                    ? "text-[#f5d98f]"
+                    ? "text-[#212121]"
                     : "text-white/50 hover:-translate-y-px hover:text-white"
                 }`}
                 onClick={() => setActiveTab("account")}
@@ -229,7 +229,7 @@ const UserProfileDialog = ({
             </div>
 
             <div
-              className="mb-3.5 min-h-45 rounded-[14px] border border-white/10 bg-white/3 p-3.5"
+              className="mb-3.5 min-h-45 rounded-[14px]  bg-[#1a1a1a]  p-3.5"
               role="tabpanel"
             >
               {activeTab === "overview" && (
