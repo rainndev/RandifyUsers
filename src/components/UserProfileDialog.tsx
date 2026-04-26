@@ -1,7 +1,7 @@
 import { CULTURE_SNAPSHOT_BY_NAT } from "@/lib/culture-snap";
 import type { CultureSnapshot } from "@/types/culture-snap.types";
 import type { TabKey, UserDetails } from "@/types/User.types";
-import { Ampersand, Eclipse, Leaf, StickyNote, X } from "lucide-react";
+import { Eclipse, Leaf, Omega, StickyNote, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -434,7 +434,7 @@ const UserProfileDialog = ({
                     <article className="culture-snapshot-entry">
                       <p className="culture-snapshot-entry-label flex items-center gap-1">
                         <span>
-                          <Ampersand width={16} />
+                          <Omega width={16} />
                         </span>
                         Greeting
                       </p>
