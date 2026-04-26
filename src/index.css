@@ -148,7 +148,7 @@
 
 .culture-snapshot-card {
   margin-bottom: 0.75rem;
-  padding: 1rem;
+  padding: 1.45rem;
   border-radius: 1rem;
   background:
     repeating-linear-gradient(
@@ -202,7 +202,6 @@
 }
 
 .culture-snapshot-entry {
-  margin: 8px;
   padding: 0.62rem 0.68rem;
 }
 
