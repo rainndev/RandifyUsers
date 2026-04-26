@@ -156,7 +156,7 @@
       rgba(255, 255, 255, 0.015) 0 1px,
       transparent 1px 15px
     ),
-    #212121;
+    #1a1a1a;
 }
 
 .culture-snapshot-title {
@@ -202,10 +202,8 @@
 }
 
 .culture-snapshot-entry {
-  margin: 0;
-  border-radius: 0.7rem;
+  margin: 8px;
   padding: 0.62rem 0.68rem;
-  background: #212121;
 }
 
 .culture-snapshot-entry-wide {

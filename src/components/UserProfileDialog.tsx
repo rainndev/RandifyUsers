@@ -141,7 +141,7 @@ const UserProfileDialog = ({
             </div>
 
             <div
-              className="relative mb-3.5 grid grid-cols-4 gap-2 overflow-hidden rounded-[14px] bg-white/5 p-1.5 max-[720px]:grid-cols-2"
+              className="relative mb-3.5 grid grid-cols-4 gap-2 overflow-hidden rounded-[14px] bg-white/2 p-1.5 max-[720px]:grid-cols-2"
               role="tablist"
               aria-label="User detail tabs"
               style={
@@ -427,7 +427,7 @@ const UserProfileDialog = ({
             <AnimatePresence>
               {isCultureCardOpen && (
                 <motion.div
-                  className="culture-snapshot-card border-[#1a1a1a] border-[5px]"
+                  className="culture-snapshot-card "
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
