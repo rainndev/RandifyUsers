@@ -1,7 +1,25 @@
+import { CULTURE_SNAPSHOT_BY_NAT } from "@/lib/culture-snap";
+import type { CultureSnapshot } from "@/types/culture-snap.types";
 import type { TabKey, UserDetails } from "@/types/User.types";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+
+const buildCultureSnapshot = (natCode: string): CultureSnapshot => {
+  const code = natCode.trim().toUpperCase();
+  const mapped = CULTURE_SNAPSHOT_BY_NAT[code];
+
+  if (mapped) {
+    return mapped;
+  }
+
+  return {
+    label: code || "Global",
+    greetingStyle: "Respectful and context-aware greetings are recommended.",
+    weekendPattern: "Varies by country and local tradition",
+    quickNote: "Culture is diverse and dynamic; local context matters most.",
+  };
+};
 
 const TAB_INDEX: Record<TabKey, number> = {
   overview: 0,
@@ -28,11 +46,13 @@ const UserProfileDialog = ({
   details,
 }: UserProfileDialogProps) => {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
+  const [isCultureCardOpen, setIsCultureCardOpen] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
 
     setActiveTab("overview");
+    setIsCultureCardOpen(false);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
@@ -55,6 +75,7 @@ const UserProfileDialog = ({
   const formattedRegisteredDate = new Date(
     details.registeredDate,
   ).toLocaleDateString();
+  const cultureSnapshot = buildCultureSnapshot(details.nationality);
 
   const openSourceProfile = () => {
     if (!sourceLink) return;
@@ -86,7 +107,7 @@ const UserProfileDialog = ({
           <motion.div
             key="profile-dialog-panel"
             layout
-            className="max-h-[86vh] w-[min(92vw,900px)] overflow-auto rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] max-[720px]:p-4"
+            className="max-h-[86vh] w-[min(92vw,900px)] overflow-hidden rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] max-[720px]:p-4"
             onClick={(event) => event.stopPropagation()}
             initial={{ opacity: 0, y: 42, scale: 0.88 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -388,6 +409,48 @@ const UserProfileDialog = ({
                 </div>
               )}
             </div>
+
+            <button
+              type="button"
+              className="mb-2 w-full cursor-pointer rounded-xl border border-[#e2be71]/60 px-3.5 py-3 font-bold text-[#f6e6bf] transition hover:-translate-y-px hover:shadow-[0_14px_24px_rgba(0,0,0,0.35)]"
+              onClick={() => setIsCultureCardOpen((prev) => !prev)}
+            >
+              {isCultureCardOpen ? "Hide Culture Snapshot" : "Culture Snapshot"}
+            </button>
+
+            <AnimatePresence>
+              {isCultureCardOpen && (
+                <motion.div
+                  className="mb-3 rounded-2xl border border-[#e2be71]/35 bg-[radial-gradient(circle_at_10%_10%,rgba(242,208,124,0.2),rgba(255,255,255,0.03))] p-4"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <p className="m-0 text-[0.74rem] uppercase tracking-wider text-[#f0d18a]">
+                    Educational Snapshot: {cultureSnapshot.label}
+                  </p>
+                  <div className="mt-2 grid grid-cols-1 gap-2">
+                    <p className="m-0 rounded-lg bg-white/4 px-3 py-2 text-[0.94rem] text-white/90">
+                      <strong className="text-[#f0d18a]">
+                        Greeting Style:
+                      </strong>{" "}
+                      {cultureSnapshot.greetingStyle}
+                    </p>
+                    <p className="m-0 rounded-lg bg-white/4 px-3 py-2 text-[0.94rem] text-white/90">
+                      <strong className="text-[#f0d18a]">
+                        Weekend Pattern:
+                      </strong>{" "}
+                      {cultureSnapshot.weekendPattern}
+                    </p>
+                    <p className="m-0 rounded-lg bg-white/4 px-3 py-2 text-[0.94rem] text-white/90">
+                      <strong className="text-[#f0d18a]">Quick Note:</strong>{" "}
+                      {cultureSnapshot.quickNote}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <button
               type="button"

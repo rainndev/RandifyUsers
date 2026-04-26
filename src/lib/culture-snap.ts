@@ -1,0 +1,130 @@
+import type { CultureSnapshot } from "@/types/culture-snap.types";
+
+export const CULTURE_SNAPSHOT_BY_NAT: Record<string, CultureSnapshot> = {
+  AU: {
+    label: "Australia",
+    greetingStyle: "Friendly and casual; first names are common.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Outdoor activities and beach culture are popular.",
+  },
+  BR: {
+    label: "Brazil",
+    greetingStyle: "Warm and expressive greetings are common.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Family gatherings and social events are often lively.",
+  },
+  CA: {
+    label: "Canada",
+    greetingStyle: "Polite, direct, and respectful in tone.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Communication style can vary by region and language.",
+  },
+  CH: {
+    label: "Switzerland",
+    greetingStyle: "Polite and punctual, often more formal at first.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Regional language diversity shapes local customs.",
+  },
+  DE: {
+    label: "Germany",
+    greetingStyle: "Clear and respectful, with structure in conversation.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Planning ahead and punctuality are usually valued.",
+  },
+  DK: {
+    label: "Denmark",
+    greetingStyle: "Calm and straightforward communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Work-life balance and community comfort are emphasized.",
+  },
+  ES: {
+    label: "Spain",
+    greetingStyle: "Warm social greetings and conversational flow.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Evening social life can be more active than early mornings.",
+  },
+  FI: {
+    label: "Finland",
+    greetingStyle: "Reserved but sincere communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Personal space and quiet moments are often appreciated.",
+  },
+  FR: {
+    label: "France",
+    greetingStyle: "Polite greeting etiquette and conversational nuance.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Meals and social discussion are important daily moments.",
+  },
+  GB: {
+    label: "United Kingdom",
+    greetingStyle: "Polite and understated style, often with humor.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Small talk and queue etiquette are common social norms.",
+  },
+  IE: {
+    label: "Ireland",
+    greetingStyle: "Friendly and conversational tone.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Storytelling and community social spaces are meaningful.",
+  },
+  IN: {
+    label: "India",
+    greetingStyle: "Respectful forms of address vary by region and context.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Cultural diversity is very high across language and cuisine.",
+  },
+  IR: {
+    label: "Iran",
+    greetingStyle: "Warm hospitality with respectful social etiquette.",
+    weekendPattern: "Friday-Saturday",
+    quickNote: "Family and guest hospitality are often central values.",
+  },
+  MX: {
+    label: "Mexico",
+    greetingStyle: "Warm, relationship-oriented communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Festive traditions and family events are widely cherished.",
+  },
+  NL: {
+    label: "Netherlands",
+    greetingStyle: "Direct, clear, and practical communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Biking and schedule planning are common daily habits.",
+  },
+  NO: {
+    label: "Norway",
+    greetingStyle: "Calm and respectful social interaction.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Outdoor life and nature access are often prioritized.",
+  },
+  NZ: {
+    label: "New Zealand",
+    greetingStyle: "Friendly and approachable communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Outdoor recreation is a major part of weekend life.",
+  },
+  RS: {
+    label: "Serbia",
+    greetingStyle: "Expressive and relationship-focused greetings.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Coffee culture and social visits are widely enjoyed.",
+  },
+  TR: {
+    label: "Turkey",
+    greetingStyle: "Polite and warm hosting etiquette is common.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Tea, hospitality, and shared meals are social anchors.",
+  },
+  UA: {
+    label: "Ukraine",
+    greetingStyle: "Respectful and direct communication style.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Community and family traditions are often significant.",
+  },
+  US: {
+    label: "United States",
+    greetingStyle: "Friendly and relatively informal in many settings.",
+    weekendPattern: "Saturday-Sunday",
+    quickNote: "Regional differences can strongly shape social norms.",
+  },
+};
