@@ -61,6 +61,10 @@ npm run lint
 - Base UI + shadcn utilities
 - ESLint
 
+## About
+
+This is the IPT-101 Activity 4 requirement for Prof. OJ.
+
 ## Data Source
 
 - Random User API: https://randomuser.me/
