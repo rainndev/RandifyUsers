@@ -234,3 +234,14 @@
     grid-column: 1;
   }
 }
+
+/* Hide scrollbar but keep scroll */
+.hide-scrollbar {
+  overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

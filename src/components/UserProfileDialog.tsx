@@ -107,7 +107,7 @@ const UserProfileDialog = ({
           <motion.div
             key="profile-dialog-panel"
             layout
-            className="max-h-[86vh] w-[min(92vw,900px)] overflow-auto rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] max-[720px]:p-4"
+            className="max-h-[86vh] w-[min(92vw,900px)] overflow-auto  hide-scrollbar rounded-4xl border-[#1a1a1a] border-[5px] bg-[#212121] p-6 text-[#f4f5fb] shadow-[0_40px_90px_rgba(0,0,0,0.45)] max-[720px]:p-4"
             onClick={(event) => event.stopPropagation()}
             initial={{ opacity: 0, y: 42, scale: 0.88 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
