@@ -133,7 +133,7 @@ const UserProfileDialog = ({
                 <h3 className="m-[2px_0] text-[clamp(1.25rem,3vw,1.5rem)] leading-[1.2]">
                   {fullName}
                 </h3>
-                <p className="text-xs  bg-amber-300 inline-block rounded-full text-[#1a1a1a] font-semibold  px-7 py-0.5 mt-1 ">
+                <p className="text-xs  bg-amber-300 inline-block rounded-full text-[#1a1a1a] border-3 border-[#1a1a1a] font-semibold  px-7 py-0.5 mt-1 ">
                   @{details.username}
                 </p>
               </div>
@@ -150,7 +150,7 @@ const UserProfileDialog = ({
               }
             >
               <span
-                className="pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 rounded-[10px] bg-amber-300 transition-transform duration-260 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 rounded-xl bg-amber-300  border-5 border-[#212121] transition-transform duration-260 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
                   width: "calc((100% - 35px) / 4)",
                   transform: `translateX(calc(${activeTabIndex} * (100% + 8px)))`,
