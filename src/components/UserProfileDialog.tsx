@@ -130,13 +130,12 @@ const UserProfileDialog = ({
                 alt={fullName}
               />
               <div>
-                <p className="m-0 text-[0.7rem] uppercase tracking-[0.08em] text-[#c5a86a]">
-                  Random User Profile
-                </p>
-                <h3 className="m-[2px_0] text-[clamp(1.25rem,3vw,1.8rem)] leading-[1.2]">
+                <h3 className="m-[2px_0] text-[clamp(1.25rem,3vw,1.5rem)] leading-[1.2]">
                   {fullName}
                 </h3>
-                <p className="m-0 text-white/70">@{details.username}</p>
+                <p className="text-xs  bg-amber-300 inline-block rounded-full text-[#1a1a1a] font-semibold  px-7 py-0.5 mt-1 ">
+                  @{details.username}
+                </p>
               </div>
             </div>
 
