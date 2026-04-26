@@ -146,6 +146,12 @@
     border-color 180ms ease;
 }
 
+.culture-snapshot-icon-toggle:hover {
+  transform: translateY(-1px);
+  border-color: #ffe07f;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
 .culture-snapshot-card {
   margin-bottom: 0.75rem;
   padding: 1.45rem;

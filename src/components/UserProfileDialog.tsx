@@ -1,7 +1,7 @@
 import { CULTURE_SNAPSHOT_BY_NAT } from "@/lib/culture-snap";
 import type { CultureSnapshot } from "@/types/culture-snap.types";
 import type { TabKey, UserDetails } from "@/types/User.types";
-import { Ampersand, ChevronDown, Eclipse, StickyNote, X } from "lucide-react";
+import { Ampersand, Eclipse, Leaf, StickyNote, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -409,20 +409,6 @@ const UserProfileDialog = ({
               )}
             </div>
 
-            <button
-              type="button"
-              className="culture-snapshot-toggle flex justify-center gap-2 border-[#1a1a1a] border-[5px]"
-              onClick={() => setIsCultureCardOpen((prev) => !prev)}
-            >
-              <p>Culture</p>
-              <span>
-                <ChevronDown
-                  className={`${!isCultureCardOpen ? "rotate-0" : "rotate-180"}`}
-                  width={20}
-                />
-              </span>
-            </button>
-
             <AnimatePresence>
               {isCultureCardOpen && (
                 <motion.div
@@ -485,13 +471,35 @@ const UserProfileDialog = ({
               )}
             </AnimatePresence>
 
-            <button
-              type="button"
-              className="w-full cursor-pointer rounded-xl border-0 bg-amber-300 px-3.5 py-3 font-bold text-[#1d1825] transition hover:-translate-y-px hover:shadow-[0_14px_24px_rgba(0,0,0,0.35)]"
-              onClick={openSourceProfile}
-            >
-              Open Source Profile
-            </button>
+            <div className="flex w-full items-stretch gap-2">
+              <button
+                type="button"
+                className="flex-1 cursor-pointer rounded-xl border-0 bg-amber-300 px-3.5 py-3 font-bold text-[#1d1825]"
+                onClick={openSourceProfile}
+              >
+                Source Profile
+              </button>
+
+              <button
+                type="button"
+                className="flex-1 flex cursor-pointer items-center justify-center border-[5px] border-[#1a1a1a] rounded-xl bg-transparent text-white/70 "
+                onClick={() => setIsCultureCardOpen((prev) => !prev)}
+                aria-label={
+                  isCultureCardOpen
+                    ? "Hide culture snapshot"
+                    : "Show culture snapshot"
+                }
+              >
+                <span>
+                  <Leaf
+                    className={`transition-transform duration-300 ease-in-out text-amber-200 ${
+                      !isCultureCardOpen ? "rotate-0" : "rotate-45"
+                    }`}
+                    width={20}
+                  />
+                </span>
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}
